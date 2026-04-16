@@ -1,0 +1,7 @@
+numpy
+pandas
+xarray
+netcdf4
+streamlit
+requests
+openai
