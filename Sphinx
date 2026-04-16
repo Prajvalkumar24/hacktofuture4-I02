@@ -1,67 +1,47 @@
-Float-Chat: AI-Powered ARGO Ocean Data Interface 🌊🚀
+# Team Sphinx | Float-Chat 🌊
 
-📝 Problem Statement / Idea
+## Problem Statement / Idea
+* **What is the problem?**
+Oceanic data is currently trapped in a "Technical Silo." While the global ARGO float network transmits critical telemetry every 10 days, the data is stored in multidimensional NetCDF binary formats. Accessing this data currently requires specialized PhD-level programming (Python/R) and high-performance computing, making it inaccessible to 90% of maritime stakeholders.
 
-What is the problem? ARGO ocean data is stored in NetCDF format, which is incompatible with modern databases and AI pipelines, creating a massive technical barrier for researchers.
+* **Why is it important?**
+This technical bottleneck prevents real-time decision-making in disaster response, subsea infrastructure safety, and climate adaptation. Furthermore, researchers in the field or on vessels often lack the high-speed internet required for cloud-based AI tools, leaving them without analytical support when they need it most.
 
-Why is it important? While NetCDF is robust for storage, it is extremely difficult for modern AI tools to query, process, and analyze in real-time.
+* **Who are the target users?**
+Marine researchers on research vessels, maritime logistics managers, disaster response teams, and local environmental policy-makers in remote coastal regions.
 
-Who are the target users? Data-Research Industries, Scientific Institutions, and Government Agencies.
+## Proposed Solution
+* **What are you building?**
+We have built the **Sphinx Intelligence Layer**—an offline-first, Edge-AI pipeline that transforms raw binary telemetry into an actionable, conversational knowledge base.
 
-💡 Proposed Solution
+* **How does it solve the problem?**
+Our system bridges the gap between scientific archives and human action by automating the ETL (Extract, Transform, Load) process. By flattening complex binaries into an AI-ready relational schema, we allow a local AI agent to query the data in plain English.
 
-What are you building? A conversational interface that allows anyone to "talk" to oceanographic data.
+* **What makes your solution unique?**
+Unlike standard AI wrappers, Sphinx is **Sovereign and Offline**. It uses a quantized 1.1B parameter model optimized for legacy hardware, bringing high-level data science to the most disconnected environments on Earth. It prioritizes **"Intelligence at the Edge"** over cloud dependency.
 
-How does it solve the problem? We built a custom NetCDF Conversion Engine that transforms raw data into a structured format for a Retrieval-Augmented Generation (RAG) pipeline.
+## Features
+* **Feature 1: Semantic ETL Engine** – Automatically refactors hierarchical NetCDF binaries into flattened, AI-consumable structures without losing scientific precision.
+* **Feature 2: Offline Edge-RAG** – Implements Retrieval-Augmented Generation (RAG) to ground the local LLM in real-time "Ground Truth" data, eliminating hallucinations.
+* **Feature 3: Command Center UI** – A professional Streamlit dashboard featuring live system health monitoring and a natural language research consultant.
 
-What makes it unique? It bridges the gap between complex scientific storage and natural language discovery, increasing accessibility by 85%.
+## Tech Stack
+* **Frontend:** Streamlit
+* **Backend:** Python 3.10, Ollama
+* **Database:** Flattened ARGO CSV (Optimized for Semantic Indexing)
+* **APIs / Services:** Local Ollama API (localhost:11434)
+* **Tools / Libraries:** TinyDolphin-1.1B (4-bit Quantized), Pandas, NetCDF4, Requests
 
-✨ Features
-
-Conversational AI: Natural language Q&A for complex ocean data.
-
-Real-time Conversion: Instant transformation from NetCDF to queryable CSV.
-
-RAG Pipeline: Intelligent retrieval using Local LLMs (Ollama) for data privacy.
-
-Sphinx Analytics: Automated calculation of Min/Max/Avg temperatures.
-
-🛠 Tech Stack
-
-Frontend: Streamlit (Conversational UI)
-
-Backend: Python / LangChain
-
-Data Processing: xarray, netCDF4, Pandas
-
-AI/ML: Llama 3.1 (via Ollama)
-
-Database: Vector-based retrieval (FAISS/Chroma logic)
-
-📊 Impact & Benefits
-
-Data Accessibility: Increased by 85%
-
-Query Speed: Increased by 70%
-
-Research Efficiency: Increased by 60%
-
-🚀 Project Setup Instructions
-
+## Project Setup Instructions
+```bash
 # 1. Clone the repository
-git clone [https://github.com/Prajvalkumar24/hacktofuture4-I02](https://github.com/Prajvalkumar24/hacktofuture4-I02)
-cd hacktofuture4-I02/Sphinx
+git clone <your-repo-link>
 
-# 2. Install Dependencies
-pip install xarray netCDF4 pandas streamlit langchain ollama
+# 2. Install dependencies
+pip install streamlit pandas requests netCDF4
 
-# 3. Run the NetCDF Converter
-# This generates argo_data.csv from the raw .nc files
-python converter.py
+# 3. Ensure Ollama is running locally with the model
+ollama run tinydolphin
 
-# 4. Start the AI Backend (Requires Ollama)
-# Open a separate terminal and run:
-# ollama run llama3.1
-
-# 5. Launch the Float-Chat Interface
-python -m streamlit run main.py
+# 4. Run the Sphinx Intelligence Layer
+streamlit run main.py
