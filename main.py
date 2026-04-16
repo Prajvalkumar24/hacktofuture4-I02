@@ -11,6 +11,56 @@ import streamlit as st
 
 CSV_PATH = Path("argo_data.csv")
 
+st.set_page_config(
+    page_title="Team Sphinx | Ocean Agent",
+    layout="wide",
+    page_icon="🌊",
+)
+
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-color: #0d1117;
+        color: #c9d1d9;
+    }
+    .stSidebar {
+        background-color: #161b22;
+        border-right: 1px solid #30363d;
+    }
+    .stSidebar [data-testid="stMarkdownContainer"],
+    .stSidebar label,
+    .stSidebar .stCaption,
+    .stSidebar .stSelectbox label {
+        color: #c9d1d9;
+    }
+    .stTextInput > div > div > input,
+    .stChatInput textarea,
+    .stSelectbox > div > div {
+        background-color: #010409;
+        color: #f0f6fc;
+        border: 1px solid #30363d;
+    }
+    div[data-testid="stChatMessage"] {
+        background-color: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 12px;
+        padding: 0.8rem 1rem;
+        margin-bottom: 0.75rem;
+    }
+    div[data-testid="stExpander"] {
+        background-color: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 12px;
+    }
+    .stSpinner > div > div {
+        border-top-color: #58a6ff !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 
 def _find_column(df: pd.DataFrame, candidates: list[str]) -> str | None:
     lowered = {col.lower(): col for col in df.columns}
@@ -190,22 +240,34 @@ Answer:"""
         )
 
 
-st.set_page_config(page_title="Float-Chat RAG", layout="centered")
-st.title("Float-Chat: Conversational Ocean AI (RAG)")
-st.caption("Ask questions about ARGO temperature data with retrieval + LLM.")
+with st.sidebar:
+    st.title("🌊 Team Sphinx")
+    st.caption("HackToFuture 4.0 | ARGO Intelligence")
+    st.markdown("---")
+    st.subheader("📡 System Health")
+    st.success("Edge Node: Active")
+    st.info("Agent: TinyDolphin")
+    st.caption("Offline-capable semantic retrieval layer")
+    st.markdown("---")
+    llm_backend = st.selectbox("LLM Interface", ["Ollama (local)", "OpenAI"])
+    backend_value = "OpenAI" if llm_backend == "OpenAI" else "Ollama"
+    if backend_value == "OpenAI":
+        st.caption("Requires `OPENAI_API_KEY`.")
+    else:
+        st.caption("Uses local Ollama at `localhost:11434`.")
+    if st.button("🗑️ Clear History", use_container_width=True):
+        st.session_state.messages = []
+        st.rerun()
 
-llm_backend = st.sidebar.selectbox("LLM backend", ["Ollama (local)", "OpenAI"])
-backend_value = "OpenAI" if llm_backend == "OpenAI" else "Ollama"
-
-if backend_value == "OpenAI":
-    st.sidebar.info("Requires OPENAI_API_KEY environment variable.")
-else:
-    st.sidebar.info("Requires local Ollama server at localhost:11434.")
+st.title("Float-Chat: Autonomous Ocean Intelligence")
+st.write("Democratizing scientific data through Edge-AI and semantic retrieval.")
 
 try:
     data = load_data(CSV_PATH)
-except FileNotFoundError as exc:
-    st.error(str(exc))
+    with st.expander("🔍 Live Ground-Truth Monitor", expanded=False):
+        st.dataframe(data.head(15), use_container_width=True)
+except Exception as exc:
+    st.error(f"Data Error: {exc}")
     st.stop()
 
 if "messages" not in st.session_state:
@@ -213,8 +275,7 @@ if "messages" not in st.session_state:
         {
             "role": "assistant",
             "content": (
-                "RAG pipeline ready. Ask detailed questions like "
-                "'How does temperature change near depth 100?'"
+                "RAG pipeline operational. Ask me about ocean temperature trends."
             ),
         }
     ]
