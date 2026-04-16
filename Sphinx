@@ -1,114 +1,67 @@
-# HackToFuture 4.0 — Template
+Float-Chat: AI-Powered ARGO Ocean Data Interface 🌊🚀
 
-Welcome to your official HackToFuture 4 repository.
+📝 Problem Statement / Idea
 
-This repository template will be used for development, tracking progress, and final submission of your project. Ensure that all work is committed here within the allowed hackathon duration.
+What is the problem? ARGO ocean data is stored in NetCDF format, which is incompatible with modern databases and AI pipelines, creating a massive technical barrier for researchers.
 
----
+Why is it important? While NetCDF is robust for storage, it is extremely difficult for modern AI tools to query, process, and analyze in real-time.
 
-### Instructions for the teams:
+Who are the target users? Data-Research Industries, Scientific Institutions, and Government Agencies.
 
-- Fork the Repository and name the forked repo in this convention: hacktofuture4-team_id (for eg: hacktofuture4-A01)
+💡 Proposed Solution
 
----
+What are you building? A conversational interface that allows anyone to "talk" to oceanographic data.
 
-## Rules
+How does it solve the problem? We built a custom NetCDF Conversion Engine that transforms raw data into a structured format for a Retrieval-Augmented Generation (RAG) pipeline.
 
-- Work must be done ONLY in the forked repository
-- Only Four Contributors are allowed.
-- After 36 hours, Please make PR to the Main Repository. A Form will be sent to fill the required information.
-- Do not copy code from other teams
-- All commits must be from individual GitHub accounts
-- Please provide meaningful commits for tracking.
-- Do not share your repository with other teams
-- Final submission must be pushed before the deadline
-- Any violation may lead to disqualification
+What makes it unique? It bridges the gap between complex scientific storage and natural language discovery, increasing accessibility by 85%.
 
----
+✨ Features
 
-# The Final README Template 
+Conversational AI: Natural language Q&A for complex ocean data.
 
-## Problem Statement / Idea
+Real-time Conversion: Instant transformation from NetCDF to queryable CSV.
 
-Clearly describe the problem you are solving.
+RAG Pipeline: Intelligent retrieval using Local LLMs (Ollama) for data privacy.
 
-- What is the problem?
-  -->ARGO ocean data is stored in NetCDF format, which is incompatible with modern databases and Al pipelines, creating significant barriers for researchers.
-- Why is it important?
-  -->NetCDF is robust for storage but difficult for modern Al tools to query and analyze efficiently.
-- Who are the target users?
-  -->Data-Research Industries, Scientific Institutions, and Government Agencies.
+Sphinx Analytics: Automated calculation of Min/Max/Avg temperatures.
 
----
+🛠 Tech Stack
 
-## Proposed Solution
+Frontend: Streamlit (Conversational UI)
 
-Explain your approach:
+Backend: Python / LangChain
 
-- What are you building?
-  -->An Al-powered conversational interface for ARGO ocean data discovery and visualization
-- How does it solve the problem?
-  -->It uses a real-time NetCDF conversion system to lead to a remotely accessed Al-predicted database.
-- What makes your solution unique?
-  -->It integrates RAG (Retrieval-Augmented Generation) pipelines and Neural Networks to make complex data accessible via natural language.
+Data Processing: xarray, netCDF4, Pandas
 
----
+AI/ML: Llama 3.1 (via Ollama)
 
-## Features
+Database: Vector-based retrieval (FAISS/Chroma logic)
 
-List the core features of your project:
+📊 Impact & Benefits
 
-- Conversational AI: Natural language interface for complex data queries.
-- Real-time Conversion: Instant transformation from NetCDF to queryable formats.
-- RAG Pipeline: Intelligent querying using Retrieval-Augmented Generation.
+Data Accessibility: Increased by 85%
 
----
-Impact & Benefits
+Query Speed: Increased by 70%
 
-Data Accessibility: Increased by 85%. 
+Research Efficiency: Increased by 60%
 
+🚀 Project Setup Instructions
 
-Query Speed: Increased by 70%. 
+# 1. Clone the repository
+git clone [https://github.com/Prajvalkumar24/hacktofuture4-I02](https://github.com/Prajvalkumar24/hacktofuture4-I02)
+cd hacktofuture4-I02/Sphinx
 
-
-Research Efficiency: Increased by 60%.
-
-## Tech Stack
-
-Mention all technologies used:
-
-- Frontend: Streamlit (Conversational UI).
-- Backend: Python / LangChain.
-- Database: PostgreSQL and FAISS/Chroma (Vector DB).
--AI/ML: Llama 3.1 (via Ollama) and RAG Pipelines.
--APIs / Services: ERDDAP Server for ARGO data access.
-
----
-
-## Project Setup Instructions
-
-Provide clear steps to run your project:
-    1. Install Dependencies 
-      => pip install xarray netCDF4 pandas streamlit langchain ollama 
-    2. Run the Data Converter 
-      This converts the "incompatible" NetCDF file into a queryable CSV. 
-      => python converter.py 
-   3. Start the AI Backend 
-      Ensure Ollama is installed and run the local model:
-      => ollama run llama3.1 
-    4. Launch Float-Chat 
-      => python -m streamlit run main.py
-
- 
- ```bash
-git clone <repo-link => https://github.com/Prajvalkumar24/hacktofuture4-I02>
-
-# Clone the repository
-git clone https://github.com/Prajvalkumar24/hacktofuture4-I02
-
-# Install dependencies
+# 2. Install Dependencies
 pip install xarray netCDF4 pandas streamlit langchain ollama
 
-# Run the project
+# 3. Run the NetCDF Converter
+# This generates argo_data.csv from the raw .nc files
 python converter.py
+
+# 4. Start the AI Backend (Requires Ollama)
+# Open a separate terminal and run:
+# ollama run llama3.1
+
+# 5. Launch the Float-Chat Interface
 python -m streamlit run main.py
